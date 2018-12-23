@@ -1,3 +1,5 @@
+/*Insertion nd deletion to a binary tree*/
+
 #include <iostream>
 #include<stdlib.h>
 #include<queue>
@@ -7,14 +9,14 @@ struct node
     int data;
     struct node *right,*left;
 };
-struct node *newnode(int data)
+struct node *newnode(int data) //allocates space for a new node
 {
  struct node *n=(struct node*)malloc(sizeof(struct node));
  n->data=data;
  n->left=n->right=NULL;
  return n;
 }
-struct node *createtree(int a[],int x,int n,struct node *root)
+struct node *createtree(int a[],int x,int n,struct node *root) //creation of a tree from a given array of elements
 {
     if(x<n)
     {
@@ -25,12 +27,12 @@ struct node *createtree(int a[],int x,int n,struct node *root)
     }
 return root;
 }
-struct node *insertinto(int i,struct node *root)
+struct node *insertinto(int i,struct node *root) //inserts a new node to an existing tree
 {
     queue<struct node *> q;
     struct node *t;
     q.push(root);
-    while(!q.empty())
+    while(!q.empty()) //using level order traversal to find a node which has no right child or left child
     {
         t=q.front();
         q.pop();
@@ -51,8 +53,8 @@ struct node *insertinto(int i,struct node *root)
 
     }
     return root;
-}
-void del(struct node *root,struct node *temp)
+} 
+void del(struct node *root,struct node *temp) //deletes the last node
 {
     queue<struct node *> q;
     q.push(root);
@@ -88,12 +90,12 @@ void del(struct node *root,struct node *temp)
         }
     }
 }
-struct node * deletenode(int x,struct node *root)
+struct node * deletenode(int x,struct node *root) //finds out the node whose data field matches the key value.
 {
     queue<struct node *> q;
     struct node *t,*key=NULL;
     q.push(root);
-    while(!q.empty())
+    while(!q.empty()) //uses level order traversal
     {
         t=q.front();
         q.pop();
@@ -106,12 +108,12 @@ struct node * deletenode(int x,struct node *root)
     }
 
     int m = t->data;
-    key->data = m;
-    del(root,t);
+    key->data = m; //copies the data of last node to the key node 
+    del(root,t); //deletes the last node
 
 return root;
 }
-void inorder(struct node *root)
+void inorder(struct node *root) //inorder traversal of the tree
 {
     if(root!=NULL)
     {
