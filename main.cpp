@@ -1,4 +1,4 @@
-/*Insertion and deletion to a binary tree*/
+/*Insertion nd deletion to a binary tree*/
 
 #include <iostream>
 #include<stdlib.h>
